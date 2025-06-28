@@ -3,6 +3,7 @@ const cors = require("cors");
 const Routes = require("./Routes");
 const { MulterError } = require("multer");
 const ContactRoutes = require("./Routes/contact.routes");
+const BookCallRoutes = require("./Routes/bookcall.routes");
 const app = express();
 require("./config/database.config");
 require("dotenv").config(); 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({
 app.use (Routes);
 
 app.use (ContactRoutes);
+app.use(BookCallRoutes);
 
 app.use((req, res, next) => {
   next({
