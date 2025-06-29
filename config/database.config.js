@@ -13,7 +13,11 @@ if (process.env.NODE_ENV === "production") {
 mongoose
   .connect(process.env.DB_URL, {
     autoCreate: true,
-    autoIndex: !isProduction,
+    autoIndex: false,
+    serverSelectionTimeoutMS: 50000, // Set server selection timeout to 50 seconds
+    socketTimeoutMS: 45000, // Set socket timeout to 45 seconds
+    retryWrites: true,
+    w: "majority",
   })
   .then((req) => {
     console.log("Database Connected Succussfully");
